@@ -4,9 +4,12 @@
   "description": "Backend API for a storefront",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
-    "start": "nodemon src/index.ts"
+    "start": "nodemon src/index.ts",
+    "migrate:up": "SET ENV=test && db-migrate db:create storefront_db_test && db-migrate up --config database.json -e test",
+    "migrate:down": "db-migrate db:drop storefront_db_test",
+    "docker:up": "docker-compose --env-file .env up -d",
+    "docker:connect": "docker exec -it storefrontbackend_postgres_1 bash"
   },
   "author": "Beshoy Hani",
   "license": "ISC",
