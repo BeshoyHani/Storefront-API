@@ -7,7 +7,7 @@ const userStore = new User();
 
 const index = async (_req: Request, res: Response) => {
     try {
-        const users =await  userStore.index();
+        const users = await userStore.index();
         res.status(200).json(users);
     } catch (error) {
         res.status(500).json(error);
@@ -33,6 +33,8 @@ const create = async (_req: Request, res: Response) => {
             last_name: _req.body.last_name,
             password: _req.body.password
         };
+        if (!user.username || !user.first_name || !user.last_name || !user.password)
+            throw Error('Invalid Parameters');
     } catch (error) {
         res.status(400).json(error);
         return;
@@ -52,7 +54,7 @@ const signin = async (_req: Request, res: Response) => {
         const password = _req.body.password as string;
         const user = await userStore.signin(username, password);
         const token = signUser(user);
-        res.status(200).json(token);
+        res.status(200).json({ token: token });
     } catch (error) {
         res.status(404).json(error);
     }

@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import { getOrderStatus, orderStatus } from "../interfaces/order";
 import { verifyAuth } from "../middlewares/authentication";
+import validateUser from "../middlewares/validateUser";
 import { Order } from "../models/order";
 
 const orderStore = new Order();
@@ -8,7 +9,7 @@ const orderStore = new Order();
 const getOrders = async (_req: Request, res: Response): Promise<void> => {
     let user_id;
     try {
-        user_id = parseInt(_req.params.id as string);
+        user_id = parseInt(_req.userId as string);
     } catch (error) {
         res.status(400).json(error);
         return;
@@ -24,7 +25,7 @@ const getOrders = async (_req: Request, res: Response): Promise<void> => {
 const getCompletedOrders = async (_req: Request, res: Response): Promise<void> => {
     let user_id;
     try {
-        user_id = parseInt(_req.params.id as string);
+        user_id = parseInt(_req.userId as string);
     } catch (error) {
         res.status(400).json(error);
         return;
@@ -92,8 +93,8 @@ const addProduct = async (_req: Request, res: Response): Promise<void> => {
 
 const orderRouter = Router();
 orderRouter.use(verifyAuth);
-orderRouter.get('/users/:id/orders', getOrders);
-orderRouter.get('/users/:id/orders/completed', getCompletedOrders);
+orderRouter.get('/orders', getOrders);
+orderRouter.get('/orders/completed', getCompletedOrders);
 orderRouter.post('/orders/new', openOrder);
 orderRouter.post('/orders/status', changeOrderStatus);
 orderRouter.post('/orders/add_product', addProduct);

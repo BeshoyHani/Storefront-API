@@ -24,6 +24,7 @@ const Client = (): Pool => {
             
         });
     } else {
+        console.log(typeof "test")
         return new Pool({
             host: POSTGRES_HOST,
             port: parseInt(PSTGRES_PORT as string),

@@ -6,11 +6,11 @@
   "scripts": {
     "build": "npx tsc",
     "start": "nodemon src/index.ts",
-    "migrate:up:test": "SET ENV=test && db-migrate db:create storefront_db_test && db-migrate up --config database.json -e test",
+    "migrate:up:test": "SET ENV=test&& db-migrate db:create storefront_db_test && db-migrate up -e test",
     "migrate:down:test": "db-migrate db:drop storefront_db_test",
     "migrate:up": "db-migrate up",
     "migrate:down": "db-migrate down",
-    "test": "npm run migrate:up:test && jasmin && migrate:down:test",
+    "test": "SET ENV=test&& yarn build && yarn migrate:up:test && jasmine && yarn migrate:down:test",
     "docker:up": "docker-compose --env-file .env up -d",
     "docker:connect": "docker exec -it storefrontbackend_postgres_1 bash"
   },
@@ -25,6 +25,7 @@
     "@types/supertest": "^2.0.12",
     "@types/typescript": "^2.0.0",
     "jasmine": "^4.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^2.0.16",
     "supertest": "^6.2.3",
     "ts-node": "^10.8.0",

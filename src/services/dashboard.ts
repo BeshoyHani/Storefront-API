@@ -5,11 +5,12 @@ export class DashboardQueries {
     async productsInOrder(order_id: number): Promise<IProduct[]> {
         try {
             const conn = await database.connect();
-            const sql = 'SELECT * from products INNER JOIN order_products on products.id = order_prodects.product_id and order_id=($1)';
+            const sql = 'SELECT p.*, op.quantity from products p INNER JOIN order_products op ON p.id = op.product_id WHERE op.order_id=($1)';
             const result = await conn.query(sql, [order_id]);
             conn.release();
             return result.rows;
         } catch (error) {
+            console.log(error)
             throw Error(`Couldn't get products of order ${order_id}. Error ${error}`);
         }
     }
