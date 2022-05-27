@@ -1,21 +1,27 @@
-import { verify, sign, JwtPayload } from "jsonwebtoken";
-import { json, NextFunction, Request, Response } from "express";
-import IUser from "../interfaces/user";
+import { verify, sign, JwtPayload } from 'jsonwebtoken';
+import { NextFunction, Request, Response } from 'express';
+import IUser from '../interfaces/user';
 import dotenv from 'dotenv/config';
 
 dotenv;
-
 
 export function signUser(user: IUser): string {
     const token = sign({ user: user }, process.env.TOKEN_SECRET as string);
     return token;
 }
 
-export function verifyAuth(_req: Request, res: Response, next: NextFunction): void {
+export function verifyAuth(
+    _req: Request,
+    res: Response,
+    next: NextFunction
+): void {
     try {
         const authorization = _req.headers.authorization;
         const token = (authorization as string).split(' ')[1];
-        const data = verify(token, process.env.TOKEN_SECRET as string) as JwtPayload;
+        const data = verify(
+            token,
+            process.env.TOKEN_SECRET as string
+        ) as JwtPayload;
         const user = data.user;
         _req.username = user.username;
         _req.userId = user.id;

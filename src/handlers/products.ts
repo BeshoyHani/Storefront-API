@@ -12,7 +12,7 @@ const index = async (_req: Request, res: Response): Promise<void> => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 const show = async (_req: Request, res: Response): Promise<void> => {
     try {
@@ -22,7 +22,7 @@ const show = async (_req: Request, res: Response): Promise<void> => {
     } catch (error) {
         res.status(400).json(error);
     }
-}
+};
 
 const create = async (_req: Request, res: Response) => {
     let product: IProduct;
@@ -30,8 +30,10 @@ const create = async (_req: Request, res: Response) => {
         product = {
             name: _req.body.name,
             price: _req.body.price,
-            category: _req.body.category
+            category: _req.body.category,
         };
+        if (!product.name || !product.price || !product.category)
+            throw Error('Invalid Parameters');
     } catch (error) {
         res.status(400).json(error);
         return;
@@ -43,8 +45,7 @@ const create = async (_req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
-
+};
 
 const productRouter = Router();
 productRouter.get('/products', index);

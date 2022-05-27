@@ -1,8 +1,6 @@
-import { Request, Response, Router } from "express";
-import { verifyAuth } from "../middlewares/authentication";
-import validateUser from "../middlewares/validateUser";
-import { DashboardQueries } from "../services/dashboard";
-
+import { Request, Response, Router } from 'express';
+import { verifyAuth } from '../middlewares/authentication';
+import DashboardQueries from '../services/dashboard';
 
 const dashboardQueries = new DashboardQueries();
 
@@ -21,7 +19,7 @@ const getProductsInOrder = async (_req: Request, res: Response) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 const dashboardRouter = Router();
 dashboardRouter.get('/orders/:id/products', verifyAuth, getProductsInOrder);

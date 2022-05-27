@@ -1,8 +1,7 @@
-import { Request, Response, Router } from "express";
-import { getOrderStatus, orderStatus } from "../interfaces/order";
-import { verifyAuth } from "../middlewares/authentication";
-import validateUser from "../middlewares/validateUser";
-import { Order } from "../models/order";
+import { Request, Response, Router } from 'express';
+import { getOrderStatus, orderStatus } from '../interfaces/order';
+import { verifyAuth } from '../middlewares/authentication';
+import { Order } from '../models/order';
 
 const orderStore = new Order();
 
@@ -20,9 +19,12 @@ const getOrders = async (_req: Request, res: Response): Promise<void> => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
-const getCompletedOrders = async (_req: Request, res: Response): Promise<void> => {
+const getCompletedOrders = async (
+    _req: Request,
+    res: Response
+): Promise<void> => {
     let user_id;
     try {
         user_id = parseInt(_req.userId as string);
@@ -37,7 +39,7 @@ const getCompletedOrders = async (_req: Request, res: Response): Promise<void> =
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 const openOrder = async (_req: Request, res: Response): Promise<void> => {
     let user_id;
@@ -49,13 +51,16 @@ const openOrder = async (_req: Request, res: Response): Promise<void> => {
     }
     try {
         const order_id = await orderStore.openOrder(user_id);
-        res.status(200).json(order_id);
+        res.status(200).json({ order_id });
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
-const changeOrderStatus = async (_req: Request, res: Response): Promise<void> => {
+const changeOrderStatus = async (
+    _req: Request,
+    res: Response
+): Promise<void> => {
     let order_id: number, status: orderStatus;
     try {
         order_id = parseInt(_req.body.orderId as string);
@@ -71,7 +76,7 @@ const changeOrderStatus = async (_req: Request, res: Response): Promise<void> =>
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 const addProduct = async (_req: Request, res: Response): Promise<void> => {
     let order_id: number, product_id: number, quantity: number;
@@ -84,12 +89,16 @@ const addProduct = async (_req: Request, res: Response): Promise<void> => {
         return;
     }
     try {
-        const product = await orderStore.addProduct(order_id, product_id, quantity);
+        const product = await orderStore.addProduct(
+            order_id,
+            product_id,
+            quantity
+        );
         res.status(200).json(product);
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 const orderRouter = Router();
 orderRouter.use(verifyAuth);

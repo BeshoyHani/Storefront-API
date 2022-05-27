@@ -1,8 +1,8 @@
-import express, { Request, Response } from "express";
-import dashboardRouter from "./handlers/dashboard";
-import orderRouter from "./handlers/orders";
-import productRouter from "./handlers/products";
-import userRoutes from "./handlers/users";
+import express from 'express';
+import dashboardRouter from './handlers/dashboard';
+import orderRouter from './handlers/orders';
+import productRouter from './handlers/products';
+import userRoutes from './handlers/users';
 
 const app = express();
 
