@@ -3,6 +3,7 @@
         "driver": "pg",
         "host": "127.0.0.1",
         "database": "storefront_db",
+        "port": "5433",
         "user": "besh",
         "password": "p123"
     },
@@ -10,6 +11,7 @@
         "driver": "pg",
         "host": "127.0.0.1",
         "database": "storefront_db_test",
+        "port": "5433",
         "user": "besh",
         "password": "p123"
     }

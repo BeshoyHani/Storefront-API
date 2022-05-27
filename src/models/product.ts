@@ -16,7 +16,7 @@ export class Product extends AbstractModel<IProduct>{
     async show(id: number): Promise<IProduct> {
         try {
             const conn = await this.connect();
-            const sql = 'SELECT FROM products WHERE id=($1)';
+            const sql = 'SELECT * FROM products WHERE id=($1)';
             const result = await conn.query(sql, [id]);
             conn.release();
             return result.rows[0];
@@ -29,7 +29,7 @@ export class Product extends AbstractModel<IProduct>{
     async create(product: IProduct): Promise<IProduct> {
         try {
             const conn = await this.connect();
-            const sql = "INSERT INTO ptoducts (name, price, category) VALUES($1, $2, $3) RETURNING *";
+            const sql = "INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *";
             const result = await conn.query(sql, [product.name, product.price, product.category]);
             conn.release();
             return result.rows[0];

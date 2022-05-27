@@ -6,8 +6,11 @@
   "scripts": {
     "build": "npx tsc",
     "start": "nodemon src/index.ts",
-    "migrate:up": "SET ENV=test && db-migrate db:create storefront_db_test && db-migrate up --config database.json -e test",
-    "migrate:down": "db-migrate db:drop storefront_db_test",
+    "migrate:up:test": "SET ENV=test && db-migrate db:create storefront_db_test && db-migrate up --config database.json -e test",
+    "migrate:down:test": "db-migrate db:drop storefront_db_test",
+    "migrate:up": "db-migrate up",
+    "migrate:down": "db-migrate down",
+    "test": "npm run migrate:up:test && jasmin && migrate:down:test",
     "docker:up": "docker-compose --env-file .env up -d",
     "docker:connect": "docker exec -it storefrontbackend_postgres_1 bash"
   },
