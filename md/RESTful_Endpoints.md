@@ -3,13 +3,13 @@
 
 >You Should first Create a user then sign in with that user in order to get token you can use when it is needed.
 
-<br>
+> All parameters should be <u>**in json format**</u>
 
 ## Users
 
 | Action | Method | Route | Parameters | Token|
 | ------------- | ------------- | -------------| ------------- | ------ |
-| Create User  | `POST`  | `/users/create` | <u>**in json format**</u> <br> username <br> first_name <br> last_name <br> password   | Not Required |
+| Create User  | `POST`  | `/users/create` | username <br> first_name <br> last_name <br> password   | Not Required |
 | Sign in  | `POST`  | `/users/signin` | username <br> password | Not Required |
 | Get All Users  | `GET`  | `/users` | N/A | Required |
 | Get Specific User | `GET`  | `/users/{user id}` | N/A | Required |
