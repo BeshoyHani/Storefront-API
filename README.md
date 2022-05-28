@@ -19,9 +19,9 @@
 ## Scripts to Run
 - `npm run build` or `yarn build` to build the type script project.
 - `npm run start` or `yarn start` to start the server.
-- `num run migrate:up` or `yar migrate:up` to run databse migration on your databse.
-- `num run migrate:down` or `yar migrate:down` to remove databse migration from your databse.
-- `npm run test` or `yarn test` to run migration on the testing databse then run jasmine tests then remove testing database.
+- `npm run migrate:up` or `yar migrate:up` to run database migration on your database.
+- `npm run migrate:down` or `yar migrate:down` to remove database migration from your database.
+- `npm run test` or `yarn test` to run migration on the testing database then run jasmine tests then remove testing database.
 - `npm run fromat` or `yarn format` runs prettier and eslinter to improve & fix writing style and all fixable issues.
 
 ## RESTful Endpoints and Database Shema
