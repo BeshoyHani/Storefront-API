@@ -29,7 +29,7 @@
 5) Server will run on `http://localhost:3000`
 
 ## Environment File
-You should create and environment file called `.env` in the root of the project.
+You should create an environment file called `.env` in the root of the project.
 This file should look like the following
 ```
 POSTGRES_HOST=
