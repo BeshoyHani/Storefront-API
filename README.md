@@ -55,10 +55,12 @@ TOKEN_SECRET=
 | BCRYPT_PASSWORD  | `String`  | A String of Arbitrary Characters used in the Hashing Process of the Password |
 | SALT_ROUNDS  | `INTEGER`  | Number is Used in The Hashing Process of The Password |
 | TOKEN_SECRET  | `String`  |  A String of Arbitrary Characters used in the Hashing Process of the Token |
-<br>
->Kindly notes that all strings should be written in the .env file without any single or double qoutation marks.
 
->You should also leave `ENV=dev` as it is. it is a parameter used when running tests to select whether to work with the development or the testing database.
+<br>
+
+> Kindly notes that all strings should be written in the .env file without any single or double qoutation marks.
+
+> You should also leave `ENV=dev` as it is. it is a parameter used when running tests to select whether to work with the development or the testing database.
 
 ## Scripts to Run
 - `npm run build` or `yarn build` to build the type script project.
