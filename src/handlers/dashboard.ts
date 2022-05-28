@@ -4,7 +4,10 @@ import DashboardQueries from '../services/dashboard';
 
 const dashboardQueries = new DashboardQueries();
 
-const getProductsInOrder = async (_req: Request, res: Response) => {
+const getProductsInOrder = async (
+    _req: Request,
+    res: Response
+): Promise<void> => {
     let order_id: number;
     try {
         order_id = parseInt(_req.params.id as string);

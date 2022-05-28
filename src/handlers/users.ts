@@ -5,7 +5,7 @@ import { User } from '../models/user';
 
 const userStore = new User();
 
-const index = async (_req: Request, res: Response) => {
+const index = async (_req: Request, res: Response): Promise<void> => {
     try {
         const users = await userStore.index();
         res.status(200).json(users);
@@ -14,7 +14,7 @@ const index = async (_req: Request, res: Response) => {
     }
 };
 
-const show = async (_req: Request, res: Response) => {
+const show = async (_req: Request, res: Response): Promise<void> => {
     try {
         const id = _req.params.id as unknown as number;
         const user = await userStore.show(id);
@@ -24,7 +24,7 @@ const show = async (_req: Request, res: Response) => {
     }
 };
 
-const create = async (_req: Request, res: Response) => {
+const create = async (_req: Request, res: Response): Promise<void> => {
     let user: IUser;
     try {
         user = {
@@ -53,7 +53,7 @@ const create = async (_req: Request, res: Response) => {
     }
 };
 
-const signin = async (_req: Request, res: Response) => {
+const signin = async (_req: Request, res: Response): Promise<void> => {
     try {
         const username = _req.body.username as string;
         const password = _req.body.password as string;
@@ -65,7 +65,7 @@ const signin = async (_req: Request, res: Response) => {
     }
 };
 
-const deleteUser = async (_req: Request, res: Response) => {
+const deleteUser = async (_req: Request, res: Response): Promise<void> => {
     try {
         const username = _req.body.username as string;
         if (!username) throw Error('Invalid username');

@@ -24,7 +24,7 @@ const show = async (_req: Request, res: Response): Promise<void> => {
     }
 };
 
-const create = async (_req: Request, res: Response) => {
+const create = async (_req: Request, res: Response): Promise<void> => {
     let product: IProduct;
     try {
         product = {

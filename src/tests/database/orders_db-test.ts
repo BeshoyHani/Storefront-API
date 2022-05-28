@@ -5,11 +5,13 @@ import DashboardQueries from '../../services/dashboard';
 describe('Order Model Testing', () => {
     let orderStore: Order, order_id: number, user_id: number;
     let dashboardStore: DashboardQueries;
+    let userStore: User;
+    let username: string;
 
     beforeAll(async () => {
         orderStore = new Order();
         dashboardStore = new DashboardQueries();
-        const userStore = new User();
+        userStore = new User();
         const user = await userStore.create({
             username: 'Besh',
             first_name: 'Beshoy',
@@ -18,6 +20,11 @@ describe('Order Model Testing', () => {
         });
 
         user_id = user.id as number;
+        username = user.username;
+    });
+
+    afterAll(async () => {
+        await userStore.delete(username);
     });
 
     it('Open Order', async () => {
