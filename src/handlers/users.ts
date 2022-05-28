@@ -81,5 +81,5 @@ userRoutes.get('/users', verifyAuth, index);
 userRoutes.get('/users/:id', verifyAuth, show);
 userRoutes.post('/users/create', create);
 userRoutes.post('/users/signin', signin);
-userRoutes.post('/users/delete', deleteUser);
+userRoutes.post('/users/delete', verifyAuth, deleteUser);
 export default userRoutes;

@@ -9,7 +9,7 @@ const {
     POSTGRES_TEST_DB,
     POSTGRES_USER,
     POSTGRES_PASSWORD,
-    PSTGRES_PORT,
+    POSTGRES_PORT,
     ENV,
 } = process.env;
 
@@ -17,7 +17,7 @@ const Client = (): Pool => {
     if (ENV == 'test') {
         return new Pool({
             host: POSTGRES_HOST,
-            port: parseInt(PSTGRES_PORT as string),
+            port: parseInt(POSTGRES_PORT as string),
             database: POSTGRES_TEST_DB,
             user: POSTGRES_USER,
             password: POSTGRES_PASSWORD,
@@ -26,7 +26,7 @@ const Client = (): Pool => {
         console.log(typeof 'test');
         return new Pool({
             host: POSTGRES_HOST,
-            port: parseInt(PSTGRES_PORT as string),
+            port: parseInt(POSTGRES_PORT as string),
             database: POSTGRES_DB,
             user: POSTGRES_USER,
             password: POSTGRES_PASSWORD,
