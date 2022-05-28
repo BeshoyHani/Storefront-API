@@ -58,7 +58,7 @@ TOKEN_SECRET=
 
 <br>
 
-> Kindly notes that all strings should be written in the .env file without any single or double qoutation marks.
+> Kindly note that all strings should be written in the .env file without any single or double qoutation marks.
 
 > You should also leave `ENV=dev` as it is. it is a parameter used when running tests to select whether to work with the development or the testing database.
 
